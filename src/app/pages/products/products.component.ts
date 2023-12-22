@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {toSignal} from "@angular/core/rxjs-interop";
 import {CardModule} from "@progress/kendo-angular-layout";
 import {CurrencyPipe} from "@angular/common";
+import {RouterLink} from "@angular/router";
 
 export type Product = {
   id: string;
@@ -18,7 +19,8 @@ export type Product = {
   standalone: true,
   imports: [
     CardModule,
-    CurrencyPipe
+    CurrencyPipe,
+    RouterLink
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'

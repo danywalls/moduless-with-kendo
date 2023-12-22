@@ -1,12 +1,8 @@
 @for (product of products();track product.id) {
-  <kendo-card width="360px">
+  <kendo-card width="360px" [routerLink]="['/products/', product.id]" style="cursor: pointer">
     <img [src]="product.image" kendoCardMedia alt="cover_img"/>
     <kendo-card-body>
       <h4>{{ product.title }}</h4>
-      <hr kendoCardSeparator/>
-      <p>
-        {{ product.description }}
-      </p>
     </kendo-card-body>
     <kendo-card-footer class="k-hstack">
       <span>Price {{ product.price | currency }}</span>
