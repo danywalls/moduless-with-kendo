@@ -1,0 +1,19 @@
+@if ($product()) {
+    <kendo-card width="360px" >
+      <img [src]="$product()?.image" kendoCardMedia alt="cover_img"/>
+      <kendo-card-body>
+        <h4>{{ $product()?.title }}</h4>
+        <hr kendoCardSeparator/>
+        <p>
+          {{ $product()?.description }}
+        </p>
+      </kendo-card-body>
+      <kendo-card-footer class="k-hstack">
+        <span>Price {{ $product()?.price | currency }}</span>
+      </kendo-card-footer>
+    </kendo-card>
+  } @else {
+  <h2> Sorry product not found 😌</h2>
+}
+
+
