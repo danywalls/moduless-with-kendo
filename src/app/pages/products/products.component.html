@@ -1,5 +1,6 @@
 @for (product of products();track product.id) {
-  <kendo-card width="360px" [routerLink]="['/products/', product.id]" style="cursor: pointer">
+  <kendo-card width="360px" [routerLink]="['/products/', product.id]"
+              style="cursor: pointer">
     <img [src]="product.image" kendoCardMedia alt="cover_img"/>
     <kendo-card-body>
       <h4>{{ product.title }}</h4>

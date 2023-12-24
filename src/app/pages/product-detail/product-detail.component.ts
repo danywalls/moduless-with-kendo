@@ -1,33 +1,41 @@
-import {Component, inject} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {map, switchMap} from "rxjs";
-import {toSignal} from "@angular/core/rxjs-interop";
-import {HttpClient} from "@angular/common/http";
-import {CurrencyPipe, JsonPipe} from "@angular/common";
-import {CardModule} from "@progress/kendo-angular-layout";
-import {Product} from "../products/products.component";
+import {
+  Component,
+  inject,
+  Injector,
+  Input,
+  OnInit,
+  runInInjectionContext,
+  Signal,
+} from '@angular/core';
+
+import { toSignal } from '@angular/core/rxjs-interop';
+import { HttpClient } from '@angular/common/http';
+import { CurrencyPipe } from '@angular/common';
+import { CardModule } from '@progress/kendo-angular-layout';
+import { Product } from '../products/products.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [
-    JsonPipe,
-    CardModule,
-    CurrencyPipe
-  ],
+  imports: [CardModule, CurrencyPipe],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.scss'
+  styleUrl: './product-detail.component.scss',
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit {
+  @Input() id!: string;
+  $product!: Signal<Product | undefined>;
+  #http = inject(HttpClient);
+  #injector = inject(Injector);
 
-  route = inject(ActivatedRoute)
-  http = inject(HttpClient);
+  ngOnInit(): void {
+    this.getProductDetail();
+  }
 
-
-    $product = toSignal(this.route.paramMap.pipe(
-      switchMap(params => {
-        const id = Number(params.get('id'));
-        return this.http.get<Product>(`https://fakestoreapi.com/products/${id}`)
-      })
-    ));
+  private getProductDetail() {
+    runInInjectionContext(this.#injector, () => {
+      this.$product = toSignal(
+        this.#http.get<Product>(`https://fakestoreapi.com/products/${this.id}`),
+      );
+    });
+  }
 }
