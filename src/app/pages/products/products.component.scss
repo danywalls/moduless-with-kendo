@@ -1,4 +1,19 @@
-:host {
+.search {
+  display: flex;
+  background-color: red;
+  height: 50px;
+  padding: 1rem;
+  justify-content: center;
+
+  > input {
+    width: 350px;
+    border-radius: 5px;
+    border: 0.1px;
+    font-size: 30px
+  }
+}
+
+.products {
   display: flex;
   flex-wrap: wrap;
   gap: 7rem;
