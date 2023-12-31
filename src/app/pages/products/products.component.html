@@ -2,10 +2,11 @@
   <input #filter (input)="updateFilter(filter.value)">
 </div>
 <div class="favorites">
+  <p>{{ favoriteMessage }}</p>
   @for (product of $favorites();track product.id) {
     <img [src]="product.image" kendoCardMedia alt="cover_img"/>
   }
-  <span (click)="clearFavorites()">clear</span>
+  <h2 (click)="clearFavorites()">🗑</h2>
 </div>
 <div class="products">
   @for (product of $products();track product.id) {
@@ -18,7 +19,7 @@
       </kendo-card-body>
       <kendo-card-footer class="k-hstack">
         <span>Price {{ product.price | currency }}</span>
-        <span (click)="addFavorite(product)">+</span>
+        <span (click)="addFavorite(product)">❤</span>
       </kendo-card-footer>
     </kendo-card>
   } @empty {
