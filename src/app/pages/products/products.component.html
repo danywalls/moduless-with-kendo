@@ -1,16 +1,24 @@
 <div class="search">
   <input #filter (input)="updateFilter(filter.value)">
 </div>
+<div class="favorites">
+  @for (product of $favorites();track product.id) {
+    <img [src]="product.image" kendoCardMedia alt="cover_img"/>
+  }
+  <span (click)="clearFavorites()">clear</span>
+</div>
 <div class="products">
   @for (product of $products();track product.id) {
-    <kendo-card width="360px" [routerLink]="['/products/', product.id]"
+    <kendo-card width="360px"
                 style="cursor: pointer">
-      <img [src]="product.image" kendoCardMedia alt="cover_img"/>
+      <img [src]="product.image" kendoCardMedia alt="cover_img" [routerLink]="['/products/', product.id]"/>
+
       <kendo-card-body>
         <h4>{{ product.title }}</h4>
       </kendo-card-body>
       <kendo-card-footer class="k-hstack">
         <span>Price {{ product.price | currency }}</span>
+        <span (click)="addFavorite(product)">+</span>
       </kendo-card-footer>
     </kendo-card>
   } @empty {

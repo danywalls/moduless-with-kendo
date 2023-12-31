@@ -13,6 +13,17 @@
   }
 }
 
+.favorites {
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+
+  > img {
+    height: 50px;
+  }
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
