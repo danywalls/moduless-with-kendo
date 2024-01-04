@@ -51,10 +51,7 @@ export class ProductsComponent {
   }
 
   updateFilter(filter: string) {
-    if (filter.length > 3) {
-      this.$searchFilter.set(filter);
-    } else {
-      this.$searchFilter.set('');
-    }
+    const filterValue = filter.length > 3 ? filter : '';
+    this.$searchFilter.set(filterValue);
   }
 }
