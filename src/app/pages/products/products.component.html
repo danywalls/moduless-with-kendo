@@ -8,20 +8,27 @@
   }
   <button (click)="clearFavorites()">🗑</button>
 </div>
+
+@if(!$products()) {
+<div class="text-center">
+  <kendo-loader type="pulsing" size="medium">
+  </kendo-loader>
+</div>
+}
+@else {
 <section id="products">
   @for (product of $products(); track product.id) {
-    <kendo-card width="200px">
-      <img [src]="product.image" kendoCardMedia alt="cover_img"/>
-      <kendo-card-body>
-        <h4>{{ product.title }}</h4>
-
-      </kendo-card-body>
-      <kendo-card-footer>
-        <span>Price {{ product.price | currency }}</span>
-        <span (click)="addFavorite(product)">❤</span>
-      </kendo-card-footer>
-    </kendo-card>
-  } @empty {
-    <h2> No products! 😌</h2>
+  <kendo-card width="200px">
+    <img [src]="product.image" kendoCardMedia alt="cover_img" />
+    <kendo-card-body>
+      <h4>{{ product.title }}</h4>
+    </kendo-card-body>
+    <kendo-card-footer>
+      <span>Price {{ product.price | currency }}</span>
+      <span (click)="addFavorite(product)">❤</span>
+    </kendo-card-footer>
+  </kendo-card>
   }
 </section>
+}
+
