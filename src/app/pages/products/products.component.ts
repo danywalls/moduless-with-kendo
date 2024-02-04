@@ -20,19 +20,19 @@ export type Product = {
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent {
-  $favorites = signal<Product[]>([]);
-  http = inject(HttpClient);
 
-  #http = inject(HttpClient);
-  private $searchFilter = signal<string>('');
-  private $productsAPI = toSignal(
-    this.#http.get<Product[]>('https://fakestoreapi.com/products'),
-  );
-  products = computed(() => {
+  public $favorites = signal<Product[]>([]);
+  public $products = computed(() => {
     return this.$productsAPI()?.filter((p) =>
-      p.title.toLowerCase().includes(this.$searchFilter()),
+      p.title.toLowerCase().includes(this.$searchFilter())
     );
   });
+
+  private http = inject(HttpClient);
+  private $searchFilter = signal<string>('');
+  private $productsAPI = toSignal(
+    this.http.get<Product[]>('https://fakestoreapi.com/products')
+  );
 
   constructor() {
     effect(() => {
