@@ -1,34 +1,55 @@
 <div class="search">
-  <h3>Search </h3>
-  <input #filter (input)="updateFilter(filter.value)">
+  <h3>Search</h3>
+  <input #filter (input)="updateFilter(filter.value)" />
 </div>
 <div class="favorites">
   @for (product of $favorites(); track product.id) {
-    <img [src]="product.image" kendoCardMedia alt="cover_img"/>
+  <img [src]="product.image" kendoCardMedia alt="cover_img" />
   }
   <button (click)="clearFavorites()">🗑</button>
 </div>
 
 @if(!$products()) {
 <div class="text-center">
-  <kendo-loader type="pulsing" size="medium">
-  </kendo-loader>
+  <kendo-loader type="pulsing" size="medium"> </kendo-loader>
 </div>
-}
-@else {
+} @else {
 <section id="products">
-  @for (product of $products(); track product.id) {
-  <kendo-card width="200px">
-    <img [src]="product.image" kendoCardMedia alt="cover_img" />
+  @for (product of $products(); track product.id)
+  { @defer (on viewport) {
+  <kendo-card width="350px" >
+    <img  [src]="product.image" kendoCardMedia alt="cover_img" />
     <kendo-card-body>
       <h4>{{ product.title }}</h4>
     </kendo-card-body>
-    <kendo-card-footer>
+    <kendo-card-footer class="k-hstack">
       <span>Price {{ product.price | currency }}</span>
       <span (click)="addFavorite(product)">❤</span>
     </kendo-card-footer>
   </kendo-card>
-  }
+  } @placeholder(minimum 2s) {
+
+    <kendo-card width="350px" style="margin: 1rem; height:350px;">
+      <kendo-skeleton
+        shape="rectangle"
+        animation="wave"
+        width="100%"
+        height="143.86px"
+      ></kendo-skeleton>
+
+      <kendo-card-footer>
+        <kendo-skeleton
+          shape="text"
+          animation="wave"
+          width="100%"
+        ></kendo-skeleton>
+        <kendo-skeleton
+          shape="text"
+          animation="pulse"
+          width="80%"
+        ></kendo-skeleton>
+      </kendo-card-footer>
+    </kendo-card>
+  } }
 </section>
 }
-
