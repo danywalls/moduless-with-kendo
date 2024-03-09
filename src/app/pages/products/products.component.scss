@@ -1,14 +1,30 @@
-:host {
+
+.favorites {
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+
+  > img {
+    height: 40px;
+  }
+}
+
+.products {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+#products {
   display: flex;
   flex-wrap: wrap;
   gap: 7rem;
   justify-content: center;
   padding: 3rem;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
 }
+
 
 @media (max-width: 768px) {
   :host {
