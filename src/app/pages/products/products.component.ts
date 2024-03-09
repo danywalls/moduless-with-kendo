@@ -25,7 +25,7 @@ export type Product = {
 })
 export class ProductsComponent {
   http = inject(HttpClient);
-  products = toSignal(
+  $products = toSignal(
     this.http.get<Product[]>('https://fakestoreapi.com/products'),
   );
 

@@ -1,4 +1,5 @@
-@for (product of products();track product.id) {
+<div class="products">
+@for (product of $products();track product.id) {
   <kendo-card width="360px">
     <img [src]="product.image" kendoCardMedia alt="cover_img"/>
     <kendo-card-body>
@@ -15,3 +16,4 @@
 } @empty {
   <h2> No products! 😌</h2>
 }
+</div>
