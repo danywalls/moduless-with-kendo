@@ -1,4 +1,5 @@
-# Using module-less components alongside Kendo UI library
-This code is part of a series of articles:
+# How to Detect and Fix Circular Dependencies in Typescript
+This code is part of the article: https://www.danywalls.com/how-to-detect-and-fix-circular-dependencies-in-typescript
 
-Find the associated article here: https://www.telerik.com/blogs/author/dany-paredes
+
+
