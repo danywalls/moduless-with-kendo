@@ -28,7 +28,7 @@ export class ProductsComponent {
   private $productsAPI = toSignal(
     this.#http.get<Product[]>('https://fakestoreapi.com/products'),
   );
-  products = computed(() => {
+  $products = computed(() => {
     return this.$productsAPI()?.filter((p) =>
       p.title.toLowerCase().includes(this.$searchFilter()),
     );

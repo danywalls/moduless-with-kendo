@@ -9,7 +9,7 @@
   <button (click)="clearFavorites()">🗑</button>
 </div>
 <section id="products">
-  @for (product of products(); track product.id) {
+  @for (product of $products(); track product.id) {
     <kendo-card width="200px">
       <img [src]="product.image" kendoCardMedia alt="cover_img"/>
       <kendo-card-body>
